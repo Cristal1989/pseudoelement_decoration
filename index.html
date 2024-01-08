@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decoration</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
+    />
+
+    <link rel="stylesheet" href="./CSS/style.css" />
+  </head>
+  <body class="body">
+    <header class="header">
+      <div class="container">
+        <h3 class="title">Псевдо элементы</h3>
+        <p>
+          Псевдо элементы <b>::before и ::after</b> используются для добавления
+          декоративных элементов (иконок, плашек, оверлеев) без необходимости
+          создания дополнительных пустых тегов в разметке.
+        </p>
+        <ul>
+          <li>
+            <b>::before</b> - создает псевдо элемент перед всем контентом
+            элемента (вначале)
+          </li>
+          <li>
+            <b>::after</b> - создает псевдо элемент после всего контента
+            элемента (вконце)
+          </li>
+        </ul>
+        <div class="bg">
+          <p>
+            .box { <br />
+
+            /* стили элемента */ <br />
+            } <br /><br />
+            .box::before { <br />
+            /* стили псевдоэлемент before */ <br />
+            } <br /><br />.box::after { <br />/* стили псевдоэлемент after */
+            <br />
+            }
+          </p>
+        </div>
+
+        <p class="information">
+          По умолчанию это строчный элемент. Для того, чтобы задать псевдо
+          элементу вертикальную геометрию необходимо изменить его тип на блочный
+          или строчно-блочный.
+        </p>
+        <h3 class="title">Свойство content</h3>
+        <p>
+          Это обязательное свойство позволяет добавить текстовый контент внутрь
+          псевдо элемента. Даже если текстовый контент не нужен, его значение
+          необходимо поставить пустым (пустую строку), иначе браузер просто не
+          создаст псевдо элемент.
+        </p>
+        <div class="bg">
+          <p>
+            &lt;div class=&quot;box&quot;&gt; <br />
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia
+            itaque quia nobis fugit amet adipisci, corrupti animi, iusto eius a
+            sed totam voluptas porro. Dolorem aliquid rerum magnam eligendi
+            aspernatur. <br />
+            &lt;/div&gt;
+          </p>
+        </div>
+        <p>
+          В селекторе можно использовать только один псевдо элемент, который
+          должен добавлятся после простого селектора (тега, класса,
+          индификатора).
+        </p>
+        <div class="bg">
+          <p>
+            .box::before { <br />
+            content: 'Это текст в ::before'; <br />
+            font-size: 40px; <br />
+            color: orange; <br />
+            } <br /><br />
+            .box::after { <br />
+            content: 'Это текст в ::after';<br />
+            font-size: 30px; color: teal;<br />
+            }
+          </p>
+        </div>
+        <p class="warning">
+          Не используйте псевдо элемент для добавления текстового контента, это
+          грубое нарушение спецификации. Они служат исключительно для
+          декоративного оформления. Текст внутри псевдо элемента не
+          воспринимается ассистивными и индексаторами, а так же будет не
+          доступен пользователю, если не загрузится файл стилей.
+        </p>
+        <h3 class="title">Псевдо класс :hover</h3>
+        <p>
+          Для того чтобы изменить стили псевдо элемента при событии на
+          родительском элементе, например ховер необходимо использовать след
+          селетор
+        </p>
+        <div class="bg">
+          <p>
+            /* Применить стили к псевдоэлементу .box::before при ховере по
+            элементу .box */ <br />
+            .box:hover::before { <br />
+            color: green; <br />
+            } <br /><br />
+
+            /* Применить стили к псевдоэлементу .box::after при ховере по
+            элементу .box */ <br />
+            .box:hover::after { <br />
+            color: tomato;<br />
+            }
+          </p>
+        </div>
+        <h3 class="title">Псевдо элемент-иконка</h3>
+        <p>
+          Используя псевдо элементы добавим иконки перед и после ссылок в
+          списке. Before будет виден всегда, а after только при ховере по
+          ссылке.
+        </p>
+        <ul class="list">
+          <li class="list-item"><a href="" class="list-link">Home</a></li>
+          <li class="list-item"><a href="" class="list-link">Portfolio</a></li>
+          <li class="list-item"><a href="" class="list-link">Team</a></li>
+          <li class="list-item"><a href="" class="list-link">About</a></li>
+        </ul>
+        <p>
+          Самое важное находится в этом css правиле. Измянем тип элемента на
+          строчно-блочный и задаем фиксированую высоту и ширину. Так же не
+          забываем указывать свойство контента пустой строкой, чтобы браузер
+          создал псевдо элемент.
+        </p>
+        <div class="bg">
+          <p>
+            .list-link::before, <br />
+            .list-link::after { <br />
+            content: ''; <br />
+            display: inline-block; <br />
+            width: 24px; <br />
+            height: 24px; <br />
+            }
+          </p>
+        </div>
+        <div class="overlay"></div>
+        <h3 class="title">Тень элемнта</h3>
+        <p>
+          Тень добаляет элементу эффект объемности и ощущение высоты. Тени
+          бывают внешние и внутренние, размытые и плоские, одинарные и
+          многослойные.
+        </p>
+        <div class="bg"><img src="./image/shadow.jpg" alt="" /></div>
+        <p>
+          Свойство <b>box-shadow</b> задает элементу одну или более теней. По
+          умолчанию размер тени совпадает с размером элемента, а ее цвет такой
+          же как цвет ее текста
+        </p>
+        <div class="bg">
+          <p>
+            <b>box-shadow:</b> &lt;x-offset&gt; &lt;y-offset&gt; &lt;blur&gt;
+            &lt;spread&gt; &lt;color&gt;
+          </p>
+        </div>
+        <ul>
+          <li>
+            <b>x-offset</b> - горизонтальное смещение. Положительное значение
+            смещает тень вправо от блока, отрицательное - влево. Обязательное
+            значение.
+          </li>
+          <li>
+            <b>y-offset</b> - Вертикальное смещение, положительное - вниз,
+            отрицательное - вверх. Обязательное значение.
+          </li>
+          <li>
+            <b>blur</b> - радиус размытия. Чем больше значение, тем сильнее
+            размыта тень. Необязательное значение.
+          </li>
+          <li>
+            <b>spread</b> - радиус распространения. Положительное значение
+            увеличивает тень, отрицательное уменьшает. Необязательное значение.
+          </li>
+          <li>
+            <b>color</b> - цвет тени. Можно использовать любой формат записи
+            цвета. Необязательное значение.
+          </li>
+        </ul>
+        <div class="shadow">
+          <h4>Lorem ipsum dolor sit amet.</h4>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem
+            possimus maxime mollitia, aspernatur laborum dolores unde reiciendis
+            ipsum expedita. Corrupti.
+          </p>
+        </div>
+        <div class="card__set">
+          <article class="post">
+            <h1 class="post__title">Lorem ipsum dolor sit amet</h1>
+            <p class="post__text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+          </article>
+
+          <article class="post">
+            <h1 class="post__title">Lorem ipsum dolor sit amet</h1>
+            <p class="post__text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+          </article>
+
+          <article class="post">
+            <h1 class="post__title">Lorem ipsum dolor sit amet</h1>
+            <p class="post__text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+          </article>
+
+          <article class="post">
+            <h1 class="post__title">Lorem ipsum dolor sit amet</h1>
+            <p class="post__text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+          </article>
+        </div>
+        <h3 class="title">Внутренняя тень</h3>
+        <p>
+          Если внешняя тень визуально примоднимает элемент, то внутренняя тень
+          позволяет добавить элемент глубины, вдавливая элемент в интерфейс.
+          Синтаксис объявления внутренней тени аналогичен обычной, но первым
+          значением необходимо указать inset.
+        </p>
+        <div class="bg">
+          <p>
+            <b>box-shadow:</b> inset &lt;x-offset&gt; &lt;y-offset&gt;
+            &lt;blur&gt; &lt;spread&gt; &lt;color&gt;
+          </p>
+        </div>
+        <p>
+          Смещение, размытие и распростронение тени происходят внутри элемента и
+          визуально ограничено его рамкой.
+        </p>
+        <article class="post__inset">
+          <h1 class="post__title-inset">Lorem ipsum dolor sit amet</h1>
+          <p class="post__text-inset">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas id
+            eius sunt quas eos accusantium! Pariatur alias reiciendis nesciunt
+            fuga repellat aperiam, omnis eligendi. Ut accusantium ea molestias
+            totam eum harum facere adipisci placeat reiciendis, consequatur aut
+            officia non obcaecati dolor quia laboriosam consequuntur odio, sed
+            sint fuga nam.
+          </p>
+        </article>
+        <h3 class="title">Многослойная тень</h3>
+        <p>
+          На один элемент можно добавить несколько теней, указав их через
+          запятую.
+        </p>
+        <div class="bg">
+          <p>
+            <b>box-shadow:</b> <br />
+            &lt;x-offset&gt; &lt;y-offset&gt; &lt;blur&gt; &lt;spread&gt;
+            &lt;color&gt;,<br />
+            &lt;x-offset&gt; &lt;y-offset&gt; &lt;blur&gt; &lt;spread&gt;
+            &lt;color&gt;, <br />
+            &lt;x-offset&gt; &lt;y-offset&gt; &lt;blur&gt; &lt;spread&gt;
+            &lt;color&gt;, <br />
+            ...
+          </p>
+        </div>
+        <p>
+          Получается многослойный пирог, в котором первая тень в списке
+          размещается в самом верху, последняя в самом низу, т.е чем раньше
+          указана тень, тем выше она в слоях и будет визуально перекрывать все
+          последующие. Этот подход позволяет сделать очень мягкие и красивые
+          тени.
+        </p>
+        <article class="post__shadow">
+          <h1 class="post__title">Lorem ipsum dolor sit amet</h1>
+          <p class="post__text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas id
+            eius sunt quas eos accusantium! Pariatur alias reiciendis nesciunt
+            fuga repellat aperiam, omnis eligendi. Ut accusantium ea molestias
+            totam eum harum facere adipisci placeat reiciendis, consequatur aut
+            officia non obcaecati dolor quia laboriosam consequuntur odio, sed
+            sint fuga nam.
+          </p>
+        </article>
+      </div>
+    </header>
+  </body>
+</html>
